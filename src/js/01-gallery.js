@@ -39,19 +39,29 @@ function selectImg (event){
   if (event.target.nodeName !== "IMG") {
     return;
   }
+
   const galleryImg = document.querySelectorAll('.gallery__image');
-  
-  galleryImg.forEach(img => img.src = img.dataset.source);
-  console.log(galleryImg.img);
+    
+  galleryImg.forEach(img => {img.src = img.dataset.source});
 
+makeInstance()
 
-  // const instance = basicLightbox.create(`
-  //     <img src="${galleryImg.img.dataset.source}" width="800" height="600">
-  // `)
-  
-  // instance.show()
 };
-
-
+function makeInstance(){
+  const instance = basicLightbox.create(`
+  <img src="${event.target.src}" width="800" height="600">  
+  `)
+  
+  instance.show()
+  
+  document.addEventListener("keydown", event => {
+   
+  
+    if(event.key !== 'Escape'){ 
+      return
+    }
+      instance.close();  
+  });
+};
 
 
